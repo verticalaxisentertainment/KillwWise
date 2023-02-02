@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
+    
     public class Questions
     {
         public string category;
@@ -18,6 +19,7 @@ public class PlayerManager : MonoBehaviour
     {
         public Questions[] questions;
     }
+    public ParticleSystem DyingEffect;
     public static PlayerManager Instance;
     public QuestionList myQuestionList;
     private void Awake() 
@@ -31,6 +33,19 @@ public class PlayerManager : MonoBehaviour
 
     void Update()
     {
+       
+    }
+
+    private void OnParticleCollision(GameObject other)
+    {
+        if(other.CompareTag("Destroy"))
+        {
+            GameObject.Destroy(gameObject);
+            Instantiate(DyingEffect,new Vector3(transform.position.x,transform.position.y+2.5f,transform.position.z),transform.rotation);
+            Debug.Log("Hit");
+        }
+    }
         
     }
-}
+    
+
