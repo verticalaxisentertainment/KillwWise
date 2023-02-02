@@ -12,21 +12,17 @@ public class Playerscript : MonoBehaviour
     public ParticleSystem particals;
     public GameObject alien;
 
-    // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-        float tempPI = (float)Math.PI * 2;
         if (win) 
         {
-          var test =  Instantiate(particals, transform.position,transform.rotation);
+            var test =  Instantiate(particals, transform.position,transform.rotation);
             test.transform.LookAt(alien.transform);
-            Debug.Log("Basildi");
             win = false;
             
         }

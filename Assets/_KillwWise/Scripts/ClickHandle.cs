@@ -4,14 +4,22 @@ using UnityEngine;
 
 public class ClickHandle : MonoBehaviour
 {
+    float time=3.0f;
+    int buttonIndex;
     enum Choices
     {
         A,B, C, D
     }
 
+    public IEnumerator WaitForNextQuestion(float time)
+    {
+        yield return new WaitForSeconds(time);
+        LevelManager.Instance.NewQuestion();
+    }
+
     public void ButtonClick()
     {
-        int buttonIndex=0;
+        buttonIndex=0;
 
        if(gameObject.tag=="A") buttonIndex=(int)Choices.A;
        if(gameObject.tag=="B") buttonIndex=(int)Choices.B;
@@ -23,10 +31,8 @@ public class ClickHandle : MonoBehaviour
         {
            LevelManager.Instance.answerButtons[buttonIndex].image.color=Color.green;
             Playerscript.instance.win = true;
+            StartCoroutine(WaitForNextQuestion(time));
         }
-        else
-        {
-            
-        }
+        
     }
 }

@@ -9,6 +9,7 @@ public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance;
 
+    public GameObject alien;
     public TMP_Text questionText;
     public Button[] answerButtons;
 
@@ -24,7 +25,20 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
+        NewQuestion();
+    }
 
+    void Update()
+    {
+    }
+
+    public void NewQuestion()
+    {
+        foreach(var btn in answerButtons)
+        {
+            btn.image.color=Color.red;
+        }
+        Playerscript.instance.alien = Instantiate(alien,new Vector3(Random.Range(-4,4),alien.transform.position.y,alien.transform.position.z),alien.transform.rotation);
         selectedQuestion=Random.Range(0,JsonReader.Instance.questionList.results.Length-1);
         questionText.text=JsonReader.Instance.questionList.results[selectedQuestion].question;
 
@@ -42,15 +56,6 @@ public class LevelManager : MonoBehaviour
                 b++;
             }
         }
-        
-    }
-
-    void Update()
-    {
-    }
-
-    void ButtonClick()
-    {
-        
+        b=0;
     }
 }
