@@ -22,7 +22,7 @@ public class Playerscript : MonoBehaviour
         if (win) 
         {
             var test =  Instantiate(particals, transform.position,transform.rotation);
-            test.transform.LookAt(alien.transform);
+            test.transform.LookAt(new Vector3(alien.transform.position.x,alien.transform.position.y+1.5f,alien.transform.position.z));
             win = false;
             
         }

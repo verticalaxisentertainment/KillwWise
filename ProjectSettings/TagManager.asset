@@ -8,13 +8,12 @@ TagManager:
   - B
   - C
   - D
-  tags:
   - Destroy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - PostProcessing
   - Water
   - UI
   - 

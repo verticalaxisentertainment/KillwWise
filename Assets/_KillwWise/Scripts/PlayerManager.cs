@@ -40,6 +40,7 @@ public class PlayerManager : MonoBehaviour
         {
             GameObject.Destroy(gameObject);
             Instantiate(DyingEffect,new Vector3(transform.position.x,transform.position.y+2.5f,transform.position.z),transform.rotation);
+            Destroy(other.gameObject);
         }
     }
         
