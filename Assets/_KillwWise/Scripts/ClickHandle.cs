@@ -22,6 +22,7 @@ public class ClickHandle : MonoBehaviour
             JsonReader.Instance.questionList.results[LevelManager.Instance.selectedQuestion].correct_answer)
         {
            LevelManager.Instance.answerButtons[buttonIndex].image.color=Color.green;
+            Playerscript.instance.win = true;
         }
         else
         {

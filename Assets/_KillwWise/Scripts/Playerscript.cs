@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class Playerscript : MonoBehaviour
 {
+    public static Playerscript instance;
+    public bool win;
+
     public ParticleSystem particals;
     public GameObject alien;
 
@@ -19,12 +22,17 @@ public class Playerscript : MonoBehaviour
     void Update()
     {
         float tempPI = (float)Math.PI * 2;
-        if (Input.GetKeyDown(KeyCode.Space)) 
+        if (win) 
         {
           var test =  Instantiate(particals, transform.position,transform.rotation);
             test.transform.LookAt(alien.transform);
             Debug.Log("Basildi");
+            win = false;
             
         }
+    }
+    private void Awake()
+    {
+        instance = this;
     }
 }
