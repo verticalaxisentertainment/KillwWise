@@ -21,14 +21,12 @@ public class PlayerManager : MonoBehaviour
     }
     public ParticleSystem DyingEffect;
     public static PlayerManager Instance;
-    public QuestionList myQuestionList;
     private void Awake() 
     {
         Instance=this;
     }
     void Start()
     {
-        
     }
 
     void Update()
