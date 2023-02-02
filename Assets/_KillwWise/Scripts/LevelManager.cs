@@ -42,18 +42,43 @@ public class LevelManager : MonoBehaviour
         selectedQuestion=Random.Range(0,JsonReader.Instance.questionList.results.Length-1);
         questionText.text=JsonReader.Instance.questionList.results[selectedQuestion].question;
 
-        correctAnswerIndex=Random.Range(0,3);
+        if(JsonReader.Instance.questionList.results[selectedQuestion].type=="boolean")
+        {
+            answerButtons[0].gameObject.SetActive(false);
+            answerButtons[3].gameObject.SetActive(false);
+
+            correctAnswerIndex=Random.Range(1,2);
+        }
+        else{
+            answerButtons[0].gameObject.SetActive(true);
+            answerButtons[3].gameObject.SetActive(true);
+            correctAnswerIndex=Random.Range(0,3);
+        }
 
         
         answerButtons[correctAnswerIndex].GetComponentInChildren<TMP_Text>().text=JsonReader.Instance.questionList.results[selectedQuestion].correct_answer;
             
-        for(int i=0;i<4;i++)
+        if(JsonReader.Instance.questionList.results[selectedQuestion].type=="boolean")
         {
-            if(correctAnswerIndex!=i)
+            for(int i=1;i<3;i++)
             {
-                answerButtons[i].GetComponentInChildren<TMP_Text>().text=JsonReader.Instance.questionList.results[selectedQuestion]
-                    .incorrect_answers[b];
-                b++;
+                 if(correctAnswerIndex!=i)
+                {
+                    answerButtons[i].GetComponentInChildren<TMP_Text>().text=JsonReader.Instance.questionList.results[selectedQuestion]
+                        .incorrect_answers[0];
+                }
+            }
+        }
+        else
+        {
+            for(int i=0;i<4;i++)
+            {
+                if(correctAnswerIndex!=i)
+                {
+                    answerButtons[i].GetComponentInChildren<TMP_Text>().text=JsonReader.Instance.questionList.results[selectedQuestion]
+                        .incorrect_answers[b];
+                    b++;
+                }
             }
         }
         b=0;
